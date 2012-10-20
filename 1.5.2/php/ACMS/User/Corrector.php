@@ -8,19 +8,15 @@ class ACMS_User_Corrector
 {
     /**
      * age_sns
-     * 引数ひとつ目で秒表示するかどうか（'true'で秒表示）
      * SNSの投稿時間風のage表示
+     * 引数ひとつ目で秒表示するかどうか（'true'で秒表示）
      */
     public static function age_sns($txt, $args = array())
     {
         $secmode = isset($args[0]) ? $args[0] == 'true' : FALSE;
         $dt  = false !== ($dt = strtotime($txt)) ? $dt : $txt;
-		var_dump($dt);
-        //$ymd = date('Ymd', $dt);
-        //$txt = intval((date('Ymd') - strval($ymd))/10000);
-        return $txt;
-
         $time_span = time() - $dt;
+
         $mm = floor($time_span / 60);
         $hh = floor($time_span / (60 * 60));
         $dd = floor($time_span / (60 * 60 * 24));
