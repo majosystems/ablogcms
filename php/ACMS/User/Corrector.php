@@ -33,5 +33,21 @@ class ACMS_User_Corrector
             return $day."日前";
         return $txt; // いずれの処理も通らない場合そのまま
     }
+
+    /**
+     * 指定文字数で改行
+     * MTAの1000文字改行に対抗
+     */
+    public static function mail_wordwrap($txt, $args = array())
+    {
+        $count = isset($args[0]) ? (int)$args[0] : 150;
+        $ret = '';
+        $pointer = 0;
+        while(mb_strlen($txt) > $pointer){
+          $ret .= mb_substr($txt,$pointer,$count) . "\n";
+          $pointer += $count;
+        }
+        return $ret;
+    }
 }
 
